@@ -54,7 +54,7 @@ public class RoomController {
 	}
 	
 	@GetMapping("/all")
-	@PreAuthorize("hasRole('ROLE_owner')")
+	@PreAuthorize("hasRole('OWNER')")
 	public List<RoomResponse> getAllRooms() {
 		return roomService.getAllRooms();
 	}
