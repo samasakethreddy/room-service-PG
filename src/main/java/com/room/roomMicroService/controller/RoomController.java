@@ -47,7 +47,9 @@ public class RoomController {
 		roomService.addRoom(roomRequest);
 		return "Room added successfuly...";
 	}
-	
+
+
+	@PreAuthorize("hasRole('TENANT')")
 	@GetMapping("{roomId}")
 	public RoomResponse getRoom(@PathVariable("roomId") Integer roomId) {
 		return roomService.getRoom(roomId);

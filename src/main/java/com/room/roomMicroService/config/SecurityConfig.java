@@ -21,11 +21,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
-//                .addFilterBefore(new RequestContextFilter(), UsernamePasswordAuthenticationFilter.class) // Add filter before authentication
-
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.decoder(jwtDecoder())))
-
                 // Add custom authorization filter after OAuth2 JWT token filter (BearerTokenAuthenticationFilter)
                 .addFilterAfter(
                         new RequestContextFilter(),

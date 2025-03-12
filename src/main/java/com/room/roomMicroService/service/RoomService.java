@@ -37,12 +37,8 @@ public class RoomService {
 	public RoomResponse getRoom(Integer roomId) {
 		
 		Optional<Room> roomResponseOptional = roomRepository.findById(roomId);
-		
-		if(roomResponseOptional.isPresent()) {
-			return mapToResponse(roomResponseOptional.get());
-		}else {
-			return null;
-		}
+
+        return roomResponseOptional.map(this::mapToResponse).orElse(null);
 
 	}
 
